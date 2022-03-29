@@ -1,0 +1,37 @@
+{% extends 'postbase.html' %}
+{%load static%}
+
+{% block body %}  
+
+{%for msg in messages%}
+<div class="alert alert-{{msg.tags}} alert-dismissible fade show" role="alert">
+  <strong>Message : </strong> {{msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{%endfor%}
+  <!-- ======= Contact Section ======= -->
+
+
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="row mt-5">
+
+        <div class="col-lg-11 mt-5 mt-lg-0" data-aos="fade-left">
+
+          <form  method="post" enctype="multipart/form-data" >{% csrf_token %}
+            <div class="row">
+                {{form.as_p}}
+           
+                {{form.media}}
+            <div class="text-center my-3"><button type="submit" class="btn btn-success">Add Post</button></div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+ {% endblock %}

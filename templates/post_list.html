@@ -1,0 +1,70 @@
+{% extends 'postbase.html' %}
+{%load static%}
+{% block body %}  
+
+	
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        
+        <div class="row">
+          {% if post|length < 1 %}
+          <p style="background-color:green;font-size:large;color:white"><b>OOPS! There is No More Post</b></p>
+          {% endif %}
+
+          {% for i in post %}
+          <div class="col-lg-4">
+            <div class="box"  data-aos="fade-up " style="height: 550px;;" >
+              <img src="{{i.image.url}}" style="height:200px;width:300px;" alt="">
+              <a href="/userpost_details/{{i.slug}}"><h4>{{i.title|slice:"0:50"}}</h4></a>
+              <p>{{i.desc|slice:"0:150"|safe}} </p>
+             
+              <p class="my-3">{{i.date}}</p>
+              <a href="/edit_post2/{{i.id}}"><button class="btn btn-success">Edit</button></a>
+              <a href="/delete_post/{{i.id}}"><button class="btn btn-danger">Delete</button></a>
+            </div>
+          </div>
+
+          
+          {% endfor %}
+
+
+
+        </div>
+          <!-- pagination -->
+          <br><br>
+    
+       <nav aria-label="...">
+        <ul class="pagination">
+        {% if post.has_previous %}	
+          <li class="page-item ">
+          <a class="page-link" href="/post_list?page=1" tabindex="-1" aria-disabled="true">First</a>
+          </li>
+          <li class="page-item ">
+          <a class="page-link" href="/post_list?page={{post.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          {%endif%}
+
+          {%for n in totalpagelist %}
+          <li class="page-item"><a class="page-link" href="/post_list?page={{n}}">{{n}}</a></li>
+         
+          {%endfor%}
+          {% if post.has_next %}	
+          
+          <li class="page-item">
+          <a class="page-link" href="/post_list?page={{post.next_page_number}}">Next</a>
+          </li>
+          <li class="page-item">
+          <a class="page-link" href="/post_list?page={{lastpage}}">Last</a>
+          </li>
+          {%endif%}
+        </ul>
+        </nav>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+  </main><!-- End #main -->
+
+   {% endblock %}

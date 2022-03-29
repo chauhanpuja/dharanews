@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block body %}  
+
+{%for msg in messages%}
+<div class="alert alert-{{msg.tags}} alert-dismissible fade show" role="alert">
+  <strong>Message : </strong> {{msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{%endfor%}
+  <!-- ======= Contact Section ======= -->
+
+
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="row mt-5">
+
+
+        <div class="col-lg-11 mt-5 mt-lg-0" data-aos="fade-left">
+
+          <form action="{% url 'userlogin' %}" method="post" enctype="multipart/form-data" role="form" >{% csrf_token %}
+            <div class="row">
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="username"  placeholder="USERNAME" required>
+            </div>
+            <div class="form-group mt-3 my-2">
+              <input type="password" class="form-control" name="password"   placeholder="PASSWORD" required>
+            </div>
+            
+            
+            <div ><button type="submit" class="btn btn-success my-3">Login Here...</button></div>
+          </form>
+
+        </div>
+
+        <div class="col-lg-11 mt-5 mt-lg-0" data-aos="fade-left">
+          <a href="/usersignup">Registration here...</a>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+ {% endblock %}

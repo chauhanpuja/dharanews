@@ -1,0 +1,34 @@
+{% extends 'base.html' %} 
+{%load static %} 
+{% block body %}
+
+
+<div class="container">
+  <section class="ls s-py-50 c-gutter-60">
+    <div class="container my-0">
+      <div class="row">
+        
+        <main class="offset-lg-1 col-lg-10">
+            <h1>Disclaimer</h1>
+
+          <article
+            class="text-center text-md-left vertical-item content-padding bordered post type-post status-publish format-standard has-post-thumbnail sticky"
+          >
+         
+          <div class="item-content  my-3">
+            {% for i in disclaimer%}
+            <p>{{i.disclaimer|safe}}</p>
+            {%endfor%}
+            
+          </div>
+          </article>
+
+            </main>
+
+        <div class="d-none d-lg-block divider-110"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}

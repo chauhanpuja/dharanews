@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block body %}  
+  <!-- ======= Hero Section ======= -->
+  <!-- <section id="hero">
+    <div class="hero-container" data-aos="fade-up">
+      <h1>Comradeship Program ! Become a Leagend</h1>
+      <h2>We are offering to be partners with us for the contribute to the world's greatest cause</h2>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section> -->
+  <!-- End Hero -->
+
+  <!-- slider -->
+  <div class="row">
+    <div class="col-lg-6">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for i in post %}
+      <div class="carousel-item {% if forloop.counter0 == 0%} active {%endif%}">
+       
+        <img src="{{i.image.url}}" height="400px" class="d-block w-100" alt="...">
+        </div>
+
+        
+     
+     {%endfor%}
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="col-lg-3">
+  <div   >
+                  
+    <img src="{% static 'assets/img/vertical-8.jpg' %}"   style="height: 400px; width:300px;" alt="">
+  </div>
+</div>
+
+<div class="col-lg-3">
+  <div   >
+                  
+    <img src="{% static 'assets/img/testimonials-bg.jpg' %}"   style="height: 400px; width:300px;" alt="">
+  </div>
+</div>
+
+</div>
+<!-- end slider -->
+
+
+  <main id="main">
+
+   <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-in">
+          <h2>Posts</h2>
+          <h3>Our Latest Posts </h3>
+        </div>
+
+        <div class="row">
+          {% for i in post %}
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" >
+            <div class="member" data-aos="fade-up">
+              <div class="member-img">
+                <a href="/blog_details/{{i.slug}}"><img src="{{i.image.url}}" style="height: 200px;" class="img-fluid" alt=""></a>
+                <!-- <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div> -->
+              </div>
+              <div class="member-info">
+                <a href="/blog_details/{{i.slug}}"><h4>{{i.title|slice:"0:50"}}</h4></a>
+                <p>{{i.desc | slice:"0:100" | safe}}</p>
+                <!-- <span>Chief Executive Officer</span> -->
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+
+          <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="{% static 'assets/img/team/team-2.jpg' %}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Sarah Jhonson</h4>
+                <span>Product Manager</span>
+              </div>
+            </div>
+          </div> -->
+
+           <!-- pagination -->
+    
+       <nav aria-label="...">
+        <ul class="pagination">
+        {% if post.has_previous %}	
+          <li class="page-item ">
+          <a class="page-link" href="/?page=1" tabindex="-1" aria-disabled="true">First</a>
+          </li>
+          <li class="page-item ">
+          <a class="page-link" href="/?page={{post.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          {%endif%}
+
+          {%for n in totalpagelist %}
+          <li class="page-item"><a class="page-link" href="/?page={{n}}">{{n}}</a></li>
+         
+          {%endfor%}
+          {% if post.has_next %}	
+          
+          <li class="page-item">
+          <a class="page-link" href="/?page={{post.next_page_number}}">Next</a>
+          </li>
+          <li class="page-item">
+          <a class="page-link" href="/?page={{lastpage}}">Last</a>
+          </li>
+          {%endif%}
+        </ul>
+        </nav>
+        
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    
+
+  </main><!-- End #main -->
+
+  {% endblock %}
